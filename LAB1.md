@@ -60,15 +60,15 @@
 
 ### Booking (Бронювання)
 - booking_id (PK): унікальний ідентифікатор бронювання.
-- customer_id (FK → Customer.customer_id): клієнт, який здійснив бронювання.
-- tour_id (FK → Tour.tour_id): тур, який бронюється.
+- customer_id (FK): ідентифікатор клієнта, який здійснив бронювання.
+- tour_id (FK): ідентифікатор туру, що бронюється.
 - booking_date: дата створення бронювання.
 - persons_count: кількість осіб у бронюванні.
 - status: статус бронювання (наприклад: нове, підтверджене, скасоване, завершене).
 
 ### Payment (Оплата)
 - payment_id (PK): унікальний ідентифікатор платежу.
-- booking_id (FK → Booking.booking_id): бронювання, яке оплачується.
+- booking_id (FK): ідентифікатор бронювання, яке оплачується.
 - payment_date: дата платежу.
 - amount: сума платежу.
 - method: спосіб оплати (карткою, готівкою, банківським переказом).
@@ -88,16 +88,16 @@
 - description: стислий опис послуги.
 
 ### BookingService (Послуги в бронюванні)
-- booking_id (FK → Booking.booking_id)
-- service_id (FK → Service.service_id)
--quantity: кількість одиниць додаткової послуги.
-- PK (booking_id, service_id)
+- booking_id (FK): ідентифікатор бронювання.
+- service_id (FK): ідентифікатор додаткової послуги.
+- quantity: кількість одиниць додаткової послуги.
+- PK:(booking_id, service_id)
 
 ### TourGuide (Призначення гіда на тур)
-- tour_id (FK → Tour.tour_id)
-- guide_id (FK → Guide.guide_id)
-- role: роль гіда (main/assistant).
-- PK (tour_id, guide_id)
+- tour_id (FK): ідентифікатор туру.
+- guide_id (FK): ідентифікатор гіда.
+- role: роль гіда (екскурсійний гід/ супроводжуючий гід).
+- PK:(tour_id, guide_id)
 
 ---
 
