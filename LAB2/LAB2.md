@@ -22,7 +22,7 @@
 ## 2. Реалізація у PostgreSQL.
 
 ### SQL-код створення таблиць:
-'''
+```sql
 CREATE TABLE Customer (
     customer_id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE TourGuide (
     FOREIGN KEY (tour_id) REFERENCES Tour(tour_id),
     FOREIGN KEY (guide_id) REFERENCES Guide(guide_id)
 );
-'''
+```
 
 
 ### SQL-код заповнення таблиць даними:
