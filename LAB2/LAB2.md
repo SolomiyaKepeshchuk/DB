@@ -18,7 +18,38 @@
 
 ---
 
-## 2. Реалізація у PostgreSQL.
+### 2. Реляційна схема бази даних
+
+Customer (customer_id, full_name, phone, email, passport_no)  
+Tour (tour_id, title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type)  
+Booking (booking_id, customer_id, tour_id, booking_date, persons_count, status)  
+Payment (payment_id, booking_id, payment_date, amount, method, status)  
+Guide (guide_id, full_name, phone, languages, experience_years)  
+Service (service_id, name, price, description)  
+BookingService (booking_id, service_id, quantity)  
+TourGuide (tour_id, guide_id, role)
+
+---
+
+### 3. Використані обмеження
+
+- `NOT NULL`- для обов’язкових полів (наприклад, full_name, phone);
+- `UNIQUE`- для унікальних значень (email, passport_no);
+- `CHECK`- для перевірки коректності даних (price > 0, capacity > 0, persons_count > 0, end_date >= start_date);
+- `FOREIGN KEY`- для забезпечення зв’язків між таблицями.
+
+---
+
+### 4. Основні зв’язки між таблицями
+
+- Один **Customer** може мати багато **Booking** (1:N)
+- Один **Tour** може мати багато **Booking** (1:N)
+- Один **Booking** може мати багато **Service** (N:M через BookingService)
+- Один **Tour** може мати багато **Guide** (N:M через TourGuide)
+
+---
+
+## 5. Реалізація у PostgreSQL.
 
 ### SQL-код створення таблиць:
 ```sql
@@ -102,7 +133,6 @@ CREATE TABLE TourGuide (
 );
 ```
 
-
 ### SQL-код заповнення таблиць даними:
 ```sql
 INSERT INTO Customer (full_name, phone, email, passport_no) VALUES
@@ -154,6 +184,7 @@ INSERT INTO TourGuide (tour_id, guide_id, role) VALUES
 (3, 2, 'гірський гід'),
 (4, 3, 'екскурсійний гід');
 ```
+
 ### SQL-запити:
 ```sql
 SELECT 
@@ -175,7 +206,7 @@ ORDER BY c.full_name;
 ```
 ---
 
-## 3.Результати виконання.
+## 6. Результати виконання.
 ![result](RESULT_SQL_LAB2.png)
 
 <p align="center"><i>Рисунок 2 – Результат виконання SQL-запиту з відображенням клієнтів, турів, гідів та додаткових послуг</i></p>
@@ -185,3 +216,9 @@ ORDER BY c.full_name;
 ![ER diagram](ERD_LAB2.png)
 
 <p align="center"><i>Рисунок 3 – Згенерована ER-діаграма бази даних туристичної агенції</i></p>
+
+---
+
+## 7. Висновок
+
+У ході лабораторної роботи було створено базу даних туристичної агенції на основі ER-діаграми. Було реалізовано таблиці, визначено ключі та зв’язки між ними, а також застосовано обмеження для забезпечення коректності даних.Після заповнення таблиць тестовими даними за допомогою SQL-запитів перевірено правильність роботи бази даних. У результаті отримано практичні навички роботи з PostgreSQL.
