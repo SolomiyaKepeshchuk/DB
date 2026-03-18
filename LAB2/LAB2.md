@@ -207,7 +207,7 @@ ORDER BY c.full_name;
 ---
 
 ## 6. Результати виконання.
-![result](RESULT_SQL_LAB2.png)
+![result](RESULT_LAB2.png)
 
 <p align="center"><i>Рисунок 2 – Результат виконання SQL-запиту з відображенням клієнтів, турів, гідів та додаткових послуг</i></p>
 
