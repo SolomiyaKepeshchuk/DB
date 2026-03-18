@@ -105,7 +105,7 @@ CREATE TABLE TourGuide (
 
 
 ### SQL-код заповнення таблиць даними:
-
+```sql
 INSERT INTO Customer (full_name, phone, email, passport_no) VALUES
 ('Кепещук Соломія', '+380671112233', 'solomiya.k@tour.com', 'ID450123'),
 ('Половко Анна', '+380931234567', 'anna.polovko@tour.com', 'ID450124'),
@@ -154,9 +154,9 @@ INSERT INTO TourGuide (tour_id, guide_id, role) VALUES
 (2, 2, 'супроводжуючий гід'),
 (3, 2, 'гірський гід'),
 (4, 3, 'екскурсійний гід');
-
+```
 ### SQL-запити:
-
+```sql
 SELECT 
     c.full_name AS customer_name,
     t.title AS tour_title,
@@ -173,7 +173,7 @@ LEFT JOIN BookingService bs ON b.booking_id = bs.booking_id
 LEFT JOIN Service s ON bs.service_id = s.service_id
 GROUP BY c.full_name, t.title, g.full_name, p.amount
 ORDER BY c.full_name;
-
+```
 ---
 
 ## 3.Результати виконання.
