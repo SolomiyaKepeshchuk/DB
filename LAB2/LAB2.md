@@ -184,4 +184,4 @@ ORDER BY c.full_name;
 
 ![ER diagram](ERD_LAB2.png)
 
-<p align="center"><i>Рисунок 1 – ER-діаграма бази даних туристичної агенції</i></p>
+<p align="center"><i>Рисунок 3 – Згенерована ER-діаграма бази даних туристичної агенції</i></p>
