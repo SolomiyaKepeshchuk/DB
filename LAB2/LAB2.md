@@ -188,20 +188,27 @@ INSERT INTO TourGuide (tour_id, guide_id, role) VALUES
 ### SQL-запити:
 ```sql
 SELECT 
-    c.full_name AS customer_name,
-    t.title AS tour_title,
-    g.full_name AS guide_name,
-    p.amount,
-    STRING_AGG(s.name, ', ') AS services
+    c.full_name AS "Ім'я клієнта",
+    b.persons_count AS "Кількість людей",
+	t.title AS "Назва туру",
+    t.base_price AS "Ціна туру",
+    g.full_name AS "Гід",
+    COALESCE(STRING_AGG(s.name, ', '), 'немає') AS "Додаткові послуги",
+    COALESCE(SUM(s.price * bs.quantity), 0) AS "Ціна додаткових послуг",
+    (t.base_price * b.persons_count) + COALESCE(SUM(s.price * bs.quantity), 0) AS "Загальна вартість"
 FROM Booking b
 JOIN Customer c ON b.customer_id = c.customer_id
 JOIN Tour t ON b.tour_id = t.tour_id
-LEFT JOIN Payment p ON b.booking_id = p.booking_id
 LEFT JOIN TourGuide tg ON t.tour_id = tg.tour_id
 LEFT JOIN Guide g ON tg.guide_id = g.guide_id
 LEFT JOIN BookingService bs ON b.booking_id = bs.booking_id
 LEFT JOIN Service s ON bs.service_id = s.service_id
-GROUP BY c.full_name, t.title, g.full_name, p.amount
+GROUP BY 
+    c.full_name,
+    b.persons_count,
+    t.title,
+    t.base_price,
+    g.full_name
 ORDER BY c.full_name;
 ```
 ---
