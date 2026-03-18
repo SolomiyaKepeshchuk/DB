@@ -13,7 +13,7 @@
 
 ## 1. Діаграма ER.
 <p align="center">
-  <img src="DB_ER.LAB1.png" width="900"><br>
+ <img src="../LAB1/DB_ER.LAB1.png" width="900">
   <i>Рисунок 1 – ER-діаграма бази даних туристичної агенції</i>
 </p>
 
