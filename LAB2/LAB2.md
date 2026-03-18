@@ -20,14 +20,14 @@
 
 ### 2. Реляційна схема бази даних
 
-Customer (customer_id, full_name, phone, email, passport_no)  
-Tour (tour_id, title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type)  
-Booking (booking_id, customer_id, tour_id, booking_date, persons_count, status)  
-Payment (payment_id, booking_id, payment_date, amount, method, status)  
-Guide (guide_id, full_name, phone, languages, experience_years)  
-Service (service_id, name, price, description)  
-BookingService (booking_id, service_id, quantity)  
-TourGuide (tour_id, guide_id, role)
+- Customer (customer_id, full_name, phone, email, passport_no)  
+- Tour (tour_id, title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type)  
+- Booking (booking_id, customer_id, tour_id, booking_date, persons_count, status)  
+- Payment (payment_id, booking_id, payment_date, amount, method, status)  
+- Guide (guide_id, full_name, phone, languages, experience_years)  
+- Service (service_id, name, price, description)  
+- BookingService (booking_id, service_id, quantity)  
+- TourGuide (tour_id, guide_id, role)
 
 ---
 
