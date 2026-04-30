@@ -19,6 +19,10 @@
 Очікуваний результат: буде виведено доступніші тури та відсортовані за зростанням ціни.
 ```sql
 -- Виводимо доступні тури, вартість яких менша за 20000 грн
+SELECT title, destination_country, base_price
+FROM Tour
+WHERE base_price < 20000
+ORDER BY base_price;
 ```
 ### 2. Пошук турів, які тривають більше 4 днів
 Мета: визначити тури, які тривають більше 4 днів.
@@ -26,6 +30,9 @@
 Очікуваний результат: буде показано тури з датами початку й завершення та тривалістю подорожі.
 ```sql
 -- Виводимо тури, тривалість яких більша за 4 дні
+SELECT title, start_date, end_date, end_date - start_date AS duration_days
+FROM Tour
+WHERE end_date - start_date > 4;
 ```
 ### 3. Перегляд підтверджених бронювань
 Мета: переглянути бронювання, які вже мають статус confirmed.
@@ -33,6 +40,9 @@
 Очікуваний результат: буде виведено тільки підтверджені бронювання.
 ```sql
 -- Виводимо бронювання, які вже підтверджені
+SELECT booking_id, customer_id, tour_id, status
+FROM Booking
+WHERE status = 'confirmed';
 ```
 ### 4. Пошук клієнтів, які замовили додаткові послуги
 Мета: переглянути, які клієнти замовили додаткові послуги до своїх турів.
@@ -40,6 +50,11 @@
 Очікуваний результат: буде показано клієнта, назву туру, додаткову послугу та її кількість.
 ```sql
 -- Виводимо клієнтів, які мають додаткові послуги у бронюванні
+SELECT c.full_name, s.name, bs.quantity
+FROM BookingService bs
+JOIN Booking b ON bs.booking_id = b.booking_id
+JOIN Customer c ON b.customer_id = c.customer_id
+JOIN Service s ON bs.service_id = s.service_id;
 ```
 ### 5. Перегляд турів із закріпленими гідами
 Мета: переглянути, які гіди закріплені за кожним туром.
@@ -47,4 +62,8 @@
 Очікуваний результат: буде виведено назви турів, імена гідів та їхні ролі.
 ```sql
 -- Виводимо тури разом із закріпленими гідами
+SELECT t.title, g.full_name, tg.role
+FROM TourGuide tg
+JOIN Tour t ON tg.tour_id = t.tour_id
+JOIN Guide g ON tg.guide_id = g.guide_id;
 ```
