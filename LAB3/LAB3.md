@@ -26,7 +26,7 @@ ORDER BY base_price;
 ```
 Результат:
 <p align="center">
-  <img src="images/select_affordable_tours.png" width="650"><br>
+  <img src="img/select_affordable_tours.png.png" width="650"><br>
   <i>Рисунок 1 – Пошук доступних за ціною турів</i>
 </p>
 
@@ -41,6 +41,11 @@ FROM Tour
 WHERE end_date - start_date > 4;
 ```
 Результат:
+<p align="center">
+  <img src="img/select_tour_duration.png.png" width="650"><br>
+  <i>Рисунок 2 – Пошук турів за тривалістю подорожі</i>
+</p>
+
 ### 3. Перегляд підтверджених бронювань
 Мета: переглянути бронювання, які вже мають статус confirmed.
 
@@ -52,6 +57,11 @@ FROM Booking
 WHERE status = 'confirmed';
 ```
 Результат:
+<p align="center">
+  <img src="img/select_confirmed_bookings.png.png" width="650"><br>
+  <i>Рисунок 3 – Перегляд підтверджених бронювань</i>
+</p>
+
 ### 4. Пошук клієнтів, які замовили додаткові послуги
 Мета: переглянути, які клієнти замовили додаткові послуги до своїх турів.
 
@@ -65,6 +75,11 @@ JOIN Customer c ON b.customer_id = c.customer_id
 JOIN Service s ON bs.service_id = s.service_id;
 ```
 Результат:
+<p align="center">
+  <img src="img/select_booking_services.png.png" width="650"><br>
+  <i>Рисунок 4 – Перегляд клієнтів із додатковими послугами</i>
+</p>
+
 ### 5. Перегляд турів із закріпленими гідами
 Мета: переглянути, які гіди закріплені за кожним туром.
 
@@ -77,3 +92,8 @@ JOIN Tour t ON tg.tour_id = t.tour_id
 JOIN Guide g ON tg.guide_id = g.guide_id;
 ```
 Результат:
+<p align="center">
+  <img src="img/select_tour_guides.png.png" width="650"><br>
+  <i>Рисунок 5 – Перегляд турів із закріпленими гідами</i>
+</p>
+
