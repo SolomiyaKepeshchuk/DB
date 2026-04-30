@@ -97,3 +97,67 @@ JOIN Guide g ON tg.guide_id = g.guide_id;
   <i>Рисунок 5 – Перегляд турів із закріпленими гідами</i>
 </p>
 
+---
+
+## INSERT
+### 1. Додавання нового клієнта
+Мета: додати нового клієнта до таблиці Customer.
+
+Очікуваний результат: у таблиці Customer з’явиться новий запис з даними клієнта Іваненко Марії.
+```sql
+-- Додаємо нового клієнта до таблиці Customer
+INSERT INTO Customer (full_name, phone, email, passport_no)
+VALUES ('Іваненко Марія', '+380681234567', 'maria.ivanenko@tour.com', 'ID450127');
+
+-- Перевіряємо додавання клієнта
+SELECT full_name, phone, email, passport_no
+FROM Customer
+WHERE email = 'maria.ivanenko@tour.com';
+```
+Результат:
+<p align="center">
+  <img src="img/insert_customer.png" width="650"><br>
+  <i>Рисунок 6 – Додавання нового клієнта</i>
+</p>
+
+### 2. Додавання нового туру
+Мета: додати новий туристичний тур до таблиці Tour.
+
+Очікуваний результат: у таблиці Tour з’явиться новий запис про тур до Праги.
+```sql
+-- Додаємо новий тур до таблиці Tour
+INSERT INTO Tour (title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type)
+VALUES ('Осінній тур до Праги', 'Чехія', 'Прага', '2025-10-10', '2025-10-15', 18500.00, 16, 'екскурсійний');
+
+-- Перевіряємо додавання туру
+SELECT title, destination_country, destination_city, base_price, capacity, tour_type
+FROM Tour
+WHERE title = 'Осінній тур до Праги';
+```
+Результат:
+<p align="center">
+  <img src="img/insert_tour.png" width="650"><br>
+  <i>Рисунок 7 – Додавання нового туру</i>
+</p>
+
+### 3. Додавання нової додаткової послуги
+Мета: додати нову додаткову послугу до таблиці Service.
+
+Очікуваний результат: у таблиці Service з’явиться новий запис про оренду туристичного спорядження.
+```sql
+-- Додаємо нову додаткову послугу до таблиці Service
+INSERT INTO Service (name, price, description)
+VALUES ('Оренда туристичного спорядження', 1500.00, 'Оренда спорядження для активного відпочинку');
+
+-- Перевіряємо додавання послуги
+SELECT name, price, description
+FROM Service
+WHERE name = 'Оренда туристичного спорядження';
+```
+Результат:
+<p align="center">
+  <img src="img/insert_service.png" width="650"><br>
+  <i>Рисунок 8 – Додавання нової додаткової послуги</i>
+</p>
+
+
