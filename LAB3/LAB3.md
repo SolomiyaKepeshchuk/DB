@@ -116,7 +116,7 @@ WHERE email = 'maria.ivanenko@tour.com';
 ```
 Результат:
 <p align="center">
-  <img src="img/insert_customer.png" width="650"><br>
+  <img src="img/insert_customer.png.png" width="650"><br>
   <i>Рисунок 6 – Додавання нового клієнта</i>
 </p>
 
@@ -136,7 +136,7 @@ WHERE title = 'Осінній тур до Праги';
 ```
 Результат:
 <p align="center">
-  <img src="img/insert_tour.png" width="650"><br>
+  <img src="img/insert_tour.png.png" width="650"><br>
   <i>Рисунок 7 – Додавання нового туру</i>
 </p>
 
@@ -156,7 +156,7 @@ WHERE name = 'Оренда туристичного спорядження';
 ```
 Результат:
 <p align="center">
-  <img src="img/insert_service.png" width="650"><br>
+  <img src="img/insert_service.png.png" width="650"><br>
   <i>Рисунок 8 – Додавання нової додаткової послуги</i>
 </p>
 
