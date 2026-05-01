@@ -180,7 +180,7 @@ WHERE email = 'maria.ivanenko@tour.com';
 ```
 Результат:
 <p align="center">
-  <img src="img/update_customer.png" width="650"><br>
+  <img src="img/update_customer.png.png" width="650"><br>
   <i>Рисунок 9 – Оновлення номера телефону клієнта</i>
 </p>
 
@@ -203,9 +203,8 @@ WHERE title = 'Осінній тур до Праги';
 ```
 
 Результат:
-
 <p align="center">
-  <img src="img/update_tour.png" width="650"><br>
+  <img src="img/update_tour.png.png" width="650"><br>
   <i>Рисунок 10 – Оновлення інформації про тур</i>
 </p>
 
@@ -227,14 +226,85 @@ WHERE name = 'Оренда туристичного спорядження';
 ```
 
 Результат:
-
 <p align="center">
-  <img src="img/update_service.png" width="650"><br>
+  <img src="img/update_service.png.png" width="650"><br>
   <i>Рисунок 11 – Оновлення ціни додаткової послуги</i>
 </p>
 ---
 
 ## DELETE
+### 1. Видалення послуги, яка більше не актуальна
+Мета: видалити додаткову послугу “Додаткова екскурсія”, яка більше не надається туристичною агенцією.
+
+Очікуваний результат: спочатку буде видалено пов’язані записи з таблиці BookingService, а потім сам запис про послугу з таблиці.
+
+```sql
+-- Видаляємо зв’язки послуги з бронюваннями
+DELETE FROM BookingService
+WHERE service_id IN (
+    SELECT service_id
+    FROM Service
+    WHERE name = 'Додаткова екскурсія'
+);
+
+-- Видаляємо саму послугу
+DELETE FROM Service
+WHERE name = 'Додаткова екскурсія';
+
+-- Перевіряємо список послуг після видалення
+SELECT service_id, name, price, description
+FROM Service;
+```
+Результат:
+
+<p align="center">
+  <img src="img/delete_service_excursion.png.png" width="650"><br>
+  <i>Рисунок 14 – Видалення послуги “Додаткова екскурсія”</i>
+</p>
+
+### 2. Видалення гіда, який більше не співпрацює з агенцією
+Мета: видалити запис про гіда, який більше не співпрацює з туристичною агенцією.
+
+Очікуваний результат: з таблиці буде видалено запис про гіда Прокопенко Юлію. Після перевірки у списку гідів цього запису вже не буде.
+
+```sql
+-- Видаляємо гіда, який більше не співпрацює з агенцією
+DELETE FROM Guide
+WHERE full_name = 'Прокопенко Юлія';
+
+-- Перевіряємо список гідів після видалення
+SELECT guide_id, full_name, phone, languages, experience_years
+FROM Guide;
+```
+
+Результат:
+
+<p align="center">
+  <img src="img/delete_guide.png" width="650"><br>
+  <i>Рисунок 15 – Список гідів після видалення Прокопенко Юлії</i>
+</p>
+
+### 3. Видалення туру, який більше не доступний для бронювання
+Мета: видалити туристичну пропозицію, яка більше не доступна для бронювання.
+
+Очікуваний результат: з таблиці буде видалено запис про тур “Осінній тур до Праги”. Після перевірки у списку турів цього запису вже не буде.
+
+```sql
+-- Видаляємо тур, який більше не доступний для бронювання
+DELETE FROM Tour
+WHERE title = 'Осінній тур до Праги'
+  AND destination_country = 'Чехія';
+
+-- Перевіряємо список турів після видалення
+SELECT tour_id, title, destination_country, destination_city, base_price
+FROM Tour;
+```
+
+Результат:
+<p align="center">
+  <img src="img/delete_tour_prague.png.png" width="650"><br>
+  <i>Рисунок 15 – Список турів після видалення туру “Осінній тур до Праги”</i>
+</p>
 
 ---
 
