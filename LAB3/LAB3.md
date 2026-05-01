@@ -280,7 +280,7 @@ FROM Guide;
 Результат:
 
 <p align="center">
-  <img src="img/delete_guide.png" width="650"><br>
+  <img src="img/delete_guide.png.png" width="650"><br>
   <i>Рисунок 15 – Список гідів після видалення Прокопенко Юлії</i>
 </p>
 
