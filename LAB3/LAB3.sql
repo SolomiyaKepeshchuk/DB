@@ -1,4 +1,5 @@
---- SELECT
+-- SELECT
+
 -- 1. Пошук доступних турів до 20000 грн
 SELECT title, destination_country, base_price
 FROM Tour
@@ -28,7 +29,8 @@ FROM TourGuide tg
 JOIN Tour t ON tg.tour_id = t.tour_id
 JOIN Guide g ON tg.guide_id = g.guide_id;
 
---- INSERT
+-- INSERT
+
 -- 1. Додавання нового клієнта
 INSERT INTO Customer (full_name, phone, email, passport_no)
 VALUES ('Іваненко Марія', '+380681234567', 'maria.ivanenko@tour.com', 'ID450127');
@@ -53,7 +55,8 @@ SELECT name, price, description
 FROM Service
 WHERE name = 'Оренда туристичного спорядження';
 
---- UPDATE
+-- UPDATE
+
 -- 1. Оновлення номера телефону клієнта
 UPDATE Customer
 SET phone = '+380681111111'
@@ -82,7 +85,8 @@ SELECT name, price, description
 FROM Service
 WHERE name = 'Оренда туристичного спорядження';
 
---- DELETE
+-- DELETE
+
 -- 1. Видалення послуги, яка більше не актуальна
 DELETE FROM BookingService
 WHERE service_id IN (
