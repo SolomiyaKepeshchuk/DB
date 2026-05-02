@@ -47,9 +47,10 @@ FROM Tour;
 SELECT SUM(amount) AS total_payments
 FROM Payment;
 ```
+Результат:
 <p align="center">
   <img src="img_lab4/agg_total_payments.png" width="500"><br>
-  <i>Рисунок 2 – Загальна сума оплат</i>
+  <i>Рисунок 3 – Загальна сума оплат</i>
 </p>
 
 ### 4. Пошук мінімальної ціни туру
@@ -59,9 +60,10 @@ FROM Payment;
 SELECT MIN(base_price) AS min_price
 FROM Tour;
 ```
+Результат:
 <p align="center">
   <img src="img_lab4/agg_min_tour_price.png" width="500"><br>
-  <i>Рисунок 3 – Мінімальна ціна туру</i>
+  <i>Рисунок 4 – Мінімальна ціна туру</i>
 </p>
 
 ### 5. Пошук максимальної ціни туру
@@ -71,13 +73,77 @@ FROM Tour;
 SELECT MAX(base_price) AS max_price
 FROM Tour;
 ```
+Результат:
 <p align="center">
   <img src="img_lab4/agg_max_tour_price.png" width="500"><br>
-  <i>Рисунок 4 – Максимальна ціна туру</i>
+  <i>Рисунок 5 – Максимальна ціна туру</i>
 </p>
+
 --- 
+
+## Групування даних
+### 1. Кількість турів за країнами
+Запит групує туристичні пропозиції за країною призначення та підраховує, скільки турів є для кожної країни.
+```sql
+-- Підраховуємо кількість турів за країнами
+SELECT destination_country, COUNT(*) AS tours_count
+FROM Tour
+GROUP BY destination_country
+ORDER BY tours_count DESC;
+```
+<p align="center">
+  <img src="img_lab4/group_tours_by_country.png" width="500"><br>
+  <i>Рисунок 6 – Кількість турів за країнами</i>
+</p>
+
+### 2. Сума оплат за способом оплати
+Запит групує платежі за способом оплати та обчислює загальну суму для кожного способу.
+```sql
+-- Обчислюємо суму оплат за способом оплати
+SELECT method, SUM(amount) AS total_amount
+FROM Payment
+GROUP BY method
+ORDER BY total_amount DESC;
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/group_payments_by_method.png" width="500"><br>
+  <i>Рисунок 7 – Сума оплат за способом оплати</i>
+</p>
+
+### 3. Кількість гідів за мовами
+Запит групує гідів за мовами, якими вони володіють, і підраховує кількість гідів у кожній групі.
+```sql
+-- Підраховуємо кількість гідів за мовами
+SELECT languages, COUNT(*) AS guides_count
+FROM Guide
+GROUP BY languages
+ORDER BY guides_count DESC;
+```
+<p align="center">
+  <img src="img_lab4/group_guides_by_languages.png" width="500"><br>
+  <i>Рисунок 8 – Кількість гідів за мовами</i>
+</p>
+
+---
+
+## Фільтрування груп
+### 
+### 
+### 
+
+---
+
 ## 
----
+### 
+### 
+### 
 ##
----
+### 
+### 
+### 
 ##
+### 
+### 
+### 
+## Висновок
