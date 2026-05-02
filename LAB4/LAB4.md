@@ -23,7 +23,7 @@ FROM Customer;
 ```
 Результат:
 <p align="center">
-  <img src="img/agg_total_customers.png" width="500"><br>
+  <img src="img_lab4/agg_total_customers.png" width="500"><br>
   <i>Рисунок 1 – Загальна кількість клієнтів</i>
 </p>
 
@@ -36,7 +36,7 @@ FROM Tour;
 ```
 Результат:
 <p align="center">
-  <img src="img/agg_average_tour_price.png" width="500"><br>
+  <img src="img_lab4/agg_average_tour_price.png" width="500"><br>
   <i>Рисунок 2 – Середня вартість туру</i>
 </p>
 
@@ -48,7 +48,7 @@ SELECT SUM(amount) AS total_payments
 FROM Payment;
 ```
 <p align="center">
-  <img src="img/agg_total_payments.png" width="500"><br>
+  <img src="img_lab4/agg_total_payments.png" width="500"><br>
   <i>Рисунок 2 – Загальна сума оплат</i>
 </p>
 
@@ -60,7 +60,7 @@ SELECT MIN(base_price) AS min_price
 FROM Tour;
 ```
 <p align="center">
-  <img src="img/agg_min_tour_price.png" width="500"><br>
+  <img src="img_lab4/agg_min_tour_price.png" width="500"><br>
   <i>Рисунок 3 – Мінімальна ціна туру</i>
 </p>
 
@@ -72,7 +72,7 @@ SELECT MAX(base_price) AS max_price
 FROM Tour;
 ```
 <p align="center">
-  <img src="img/agg_max_tour_price.png" width="500"><br>
+  <img src="img_lab4/agg_max_tour_price.png" width="500"><br>
   <i>Рисунок 4 – Максимальна ціна туру</i>
 </p>
 --- 
