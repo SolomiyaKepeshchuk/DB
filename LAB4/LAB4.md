@@ -132,7 +132,7 @@ ORDER BY guides_count DESC;
 Запит групує тури за типом і залишає тільки ті типи, у яких середня ціна більша за 10000 грн.
 ```sql
 -- Виводимо типи турів із середньою ціною понад 10000 грн
-SELECT tour_type, ROUND(AVG(base_price), 2)AS average_price
+SELECT tour_type, ROUND(AVG(base_price), 2) AS average_price
 FROM Tour
 GROUP BY tour_type
 HAVING AVG(base_price) > 10000;
