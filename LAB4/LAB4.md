@@ -177,7 +177,7 @@ HAVING COUNT(*) > 1;
 
 ## JOIN-запити
 ### 1. Бронювання з іменем клієнта та назвою туру
-Запит використовує `INNER JOIN`, щоб об’єднати таблиці `Booking`, `Customer` і `Tour` та показати бронювання у зрозумілому вигляді.
+Запит об’єднує таблиці `Booking`, `Customer` і `Tour`, щоб показати бронювання у зрозумілому вигляді.
 ```sql
 -- Виводимо бронювання разом з іменем клієнта та назвою туру
 SELECT c.full_name, t.title, b.booking_date, b.persons_count, b.status
@@ -191,59 +191,43 @@ INNER JOIN Tour t ON b.tour_id = t.tour_id;
   <i>Рисунок 12 – Бронювання з клієнтами та турами</i>
 </p>
 
-### 2. Тури із закріпленими гідами
-Запит об’єднує таблиці `TourGuide`, `Tour` і `Guide`, щоб показати, який гід закріплений за кожним туром.
+### 2. Усі тури та їхні гіди
+Запит виводить усі тури та показує гідів, які за ними закріплені.
 ```sql
--- Виводимо тури разом із закріпленими гідами
+-- Виводимо всі тури та закріплених гідів
 SELECT t.title, g.full_name AS guide_name, tg.role
-FROM TourGuide tg
-JOIN Tour t ON tg.tour_id = t.tour_id
-JOIN Guide g ON tg.guide_id = g.guide_id;
+FROM Tour t
+LEFT JOIN TourGuide tg ON t.tour_id = tg.tour_id
+LEFT JOIN Guide g ON tg.guide_id = g.guide_id;
 ```
 Результат:
 <p align="center">
   <img src="img_lab4/join_tours_guides.png" width="500"><br>
-  <i>Рисунок 13 – Тури із закріпленими гідами</i>
+  <i>Рисунок 13 – Усі тури та їхні гіди</i>
 </p>
 
-### 3. Додаткові послуги у бронюваннях
-Запит об’єднує таблиці `BookingService`, `Booking`, `Customer` і `Service`, щоб показати, які додаткові послуги були додані до бронювань клієнтів.
+### 3. Комбінації клієнтів і додаткових послуг
+Запит створює всі можливі комбінації клієнтів і додаткових послуг.
 ```sql
--- Виводимо додаткові послуги, які додані до бронювань
-SELECT c.full_name, b.booking_id, s.name AS service_name, bs.quantity
-FROM BookingService bs
-JOIN Booking b ON bs.booking_id = b.booking_id
-JOIN Customer c ON b.customer_id = c.customer_id
-JOIN Service s ON bs.service_id = s.service_id;
+-- Виводимо всі можливі комбінації клієнтів і додаткових послуг
+SELECT c.full_name, s.name AS service_name
+FROM Customer c
+CROSS JOIN Service s;
 ```
 Результат:
 <p align="center">
-  <img src="img_lab4/join_booking_services.png" width="500"><br>
-  <i>Рисунок 14 – Додаткові послуги у бронюваннях</i>
-</p>
-
-### 4. Оплати клієнтів за бронюваннями
-Запит об’єднує таблиці `Payment`, `Booking` і `Customer`, щоб показати, який клієнт здійснив оплату за бронювання.
-```sql
--- Виводимо оплати разом із клієнтами
-SELECT c.full_name, p.amount, p.method, p.status
-FROM Payment p
-JOIN Booking b ON p.booking_id = b.booking_id
-JOIN Customer c ON b.customer_id = c.customer_id;
-```
-Результат:
-<p align="center">
-  <img src="img_lab4/join_payments_customers.png" width="500"><br>
-  <i>Рисунок 15 – Оплати клієнтів за бронюваннями</i>
+  <img src="img_lab4/join_customers_services.png" width="500"><br>
+  <i>Рисунок 14 – Комбінації клієнтів і додаткових послуг</i>
 </p>
 
 ---
-##
+
+## Багатотабличні агрегації
 ### 
 ### 
 ### 
 ---
-##
+## Підзапити
 ### 
 ### 
 ### 
