@@ -222,11 +222,65 @@ CROSS JOIN Service s;
 
 ---
 
-## Багатотабличні агрегації
-### 
-### 
-### 
+## Багатотаблична агрегація
+### 1. Загальна вартість додаткових послуг у бронюваннях
+Запит об’єднує таблиці `Booking`, `Customer`, `BookingService` і `Service`, після чого групує дані за клієнтом, бронюванням і назвою додаткової послуги. У результаті можна побачити, яку саме послугу замовив клієнт, у якій кількості та яка її загальна вартість.
+```sql
+-- Обчислюємо загальну вартість кожної додаткової послуги у бронюваннях
+SELECT 
+    c.full_name,
+    b.booking_id,
+    s.name AS service_name,
+    bs.quantity,
+    SUM(s.price * bs.quantity) AS service_total
+FROM Booking b
+JOIN Customer c ON b.customer_id = c.customer_id
+JOIN BookingService bs ON b.booking_id = bs.booking_id
+JOIN Service s ON bs.service_id = s.service_id
+GROUP BY c.full_name, b.booking_id, s.name, bs.quantity
+ORDER BY service_total DESC;
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/multi_service.png" width="500"><br>
+  <i>Рисунок 15 – Загальна вартість додаткових послуг у бронюваннях</i>
+</p>
+
+### 2. Кількість бронювань для кожного туру
+Запит об’єднує таблиці `Tour` і `Booking`, групує дані за назвою туру та підраховує кількість бронювань для кожного туру.
+```sql
+-- Підраховуємо кількість бронювань для кожного туру
+SELECT t.title, COUNT(b.booking_id) AS bookings_count
+FROM Tour t
+JOIN Booking b ON t.tour_id = b.tour_id
+GROUP BY t.title
+ORDER BY bookings_count DESC;
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/multi_bookings.png" width="500"><br>
+  <i>Рисунок 16 – Кількість бронювань для кожного туру</i>
+</p>
+
+### 3. Загальна сума оплат для кожного клієнта
+Запит об’єднує таблиці `Customer`, `Booking` і `Payment`, після чого групує дані за клієнтом та обчислює загальну суму оплат.
+```sql
+-- Обчислюємо загальну суму оплат для кожного клієнта
+SELECT c.full_name, SUM(p.amount) AS total_paid
+FROM Customer c
+JOIN Booking b ON c.customer_id = b.customer_id
+JOIN Payment p ON b.booking_id = p.booking_id
+GROUP BY c.full_name
+ORDER BY total_paid DESC;
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/multi_customer.png" width="500"><br>
+  <i>Рисунок 17 – Загальна сума оплат для кожного клієнта</i>
+</p>
+
 ---
+
 ## Підзапити
 ### 
 ### 
