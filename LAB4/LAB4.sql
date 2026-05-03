@@ -1,3 +1,5 @@
+-- 1. АГРЕГАТНІ ФУНКЦІЇ
+
 -- Підраховуємо загальну кількість клієнтів у базі даних
 SELECT COUNT(*) AS total_customers
 FROM Customer;
@@ -18,6 +20,8 @@ FROM Tour;
 SELECT MAX(base_price) AS max_price
 FROM Tour;
 
+-- 2. ГРУПУВАННЯ ДАНИХ
+
 -- Підраховуємо кількість турів за країнами
 SELECT destination_country, COUNT(*) AS tours_count
 FROM Tour
@@ -36,8 +40,10 @@ FROM Guide
 GROUP BY languages
 ORDER BY guides_count DESC;
 
+-- 3. ФІЛЬТРУВАННЯ ГРУП
+
 -- Виводимо типи турів із середньою ціною понад 10000 грн
-SELECT tour_type, ROUND(AVG(base_price), 2)AS average_price
+SELECT tour_type, ROUND(AVG(base_price), 2) AS average_price
 FROM Tour
 GROUP BY tour_type
 HAVING AVG(base_price) > 10000;
@@ -53,6 +59,8 @@ SELECT method, COUNT(*) AS payments_count
 FROM Payment
 GROUP BY method
 HAVING COUNT(*) > 1;
+
+-- 4. JOIN-ЗАПИТИ
 
 -- Виводимо бронювання разом з іменем клієнта та назвою туру
 SELECT c.full_name, t.title, b.booking_date, b.persons_count, b.status
@@ -70,6 +78,8 @@ LEFT JOIN Guide g ON tg.guide_id = g.guide_id;
 SELECT c.full_name, s.name AS service_name
 FROM Customer c
 CROSS JOIN Service s;
+
+-- 5. БАГАТОТАБЛИЧНА АГРЕГАЦІЯ
 
 -- Обчислюємо загальну вартість кожної додаткової послуги у бронюваннях
 SELECT 
@@ -99,6 +109,8 @@ JOIN Booking b ON c.customer_id = b.customer_id
 JOIN Payment p ON b.booking_id = p.booking_id
 GROUP BY c.full_name
 ORDER BY total_paid DESC;
+
+-- 6. ПІДЗАПИТИ
 
 -- Виводимо клієнтів, які мають бронювання
 SELECT full_name, phone, email
