@@ -282,8 +282,57 @@ ORDER BY total_paid DESC;
 ---
 
 ## Підзапити
-### 
-### 
-### 
+### 1. Клієнти, які мають бронювання
+Запит виводить клієнтів, для яких існує хоча б одне бронювання в таблиці `Booking`.
+```sql
+-- Виводимо клієнтів, які мають бронювання
+SELECT full_name, phone, email
+FROM Customer
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM Booking
+);
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/subquery_bookings.png" width="500"><br>
+  <i>Рисунок 18 – Клієнти, які мають бронювання</i>
+</p>
+
+### 2. Бронювання, за які вже є оплата
+Запит виводить бронювання, для яких існує запис про оплату в таблиці `Payment`.
+```sql
+-- Виводимо бронювання, за які вже є оплата
+SELECT booking_id, customer_id, tour_id, booking_date, status
+FROM Booking
+WHERE booking_id IN (
+    SELECT booking_id
+    FROM Payment
+);
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/subquery_payment.png" width="500"><br>
+  <i>Рисунок 19 – Бронювання, за які вже є оплата</i>
+</p>
+
+### 3. Найдорожча додаткова послуга
+Запит знаходить додаткову послугу, ціна якої дорівнює максимальній ціні серед усіх послуг.
+```sql
+-- Виводимо найдорожчу додаткову послугу
+SELECT name, price
+FROM Service
+WHERE price = (
+    SELECT MAX(price)
+    FROM Service
+);
+```
+Результат:
+<p align="center">
+  <img src="img_lab4/subquery_max_price.png" width="500"><br>
+  <i>Рисунок 20 – Найдорожча додаткова послуга</i>
+</p>
+
 ---
+
 ## Висновок
