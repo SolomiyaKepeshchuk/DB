@@ -108,9 +108,7 @@ Payment(payment_id, booking_id, payment_date, amount, method_id, status)
 
 ## 6. SQL DDL-скрипти для змінених таблиць
 ```sql
--- ==========================================
--- 1. ТРАНСФОРМАЦІЯ ТАБЛИЦІ TOUR
--- ==========================================
+-- 1. Нормалізація таблиці Tour
 
 CREATE TABLE IF NOT EXISTS Destination (
     destination_id SERIAL PRIMARY KEY,
@@ -139,10 +137,7 @@ ALTER TABLE Tour DROP COLUMN destination_country;
 ALTER TABLE Tour DROP COLUMN destination_city;
 ALTER TABLE Tour DROP COLUMN tour_type;
 
-
--- ==========================================
--- 2. ТРАНСФОРМАЦІЯ ТАБЛИЦІ GUIDE
--- ==========================================
+-- 2. Нормалізація таблиці Guide
 
 CREATE TABLE IF NOT EXISTS Language (
     language_id SERIAL PRIMARY KEY,
@@ -159,10 +154,7 @@ CREATE TABLE IF NOT EXISTS GuideLanguage (
 
 ALTER TABLE Guide DROP COLUMN languages;
 
-
--- ==========================================
--- 3. ТРАНСФОРМАЦІЯ ТАБЛИЦІ PAYMENT
--- ==========================================
+-- 3. Нормалізація таблиці Payment
 
 CREATE TABLE IF NOT EXISTS PaymentMethod (
     method_id SERIAL PRIMARY KEY,
