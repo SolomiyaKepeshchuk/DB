@@ -56,14 +56,12 @@ payment_id -> booking_id, amount, method, payment_date
 На цьому етапі поле `languages` у таблиці `Guide` було винесено в окремі таблиці.
 
 Було:
-
-```sql
+```text
 Guide(guide_id, full_name, languages)
 ```
 
 Стало:
-
-```sql
+```text
 Guide(guide_id, full_name)
 
 Language(language_id, language_name)
@@ -84,12 +82,12 @@ GuideLanguage(guide_id, language_id)
 На цьому етапі повторювані дані з таблиць `Tour` і `Payment` було винесено в окремі таблиці.
 
 Було:
-```sql
+```text
 Tour(tour_id, title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type)
 ```
 
 Стало:
-```sql
+```text
 Destination(destination_id, destination_country, destination_city)
 TourType(tour_type_id, tour_type_name)
 Tour(tour_id, title, destination_id, start_date, end_date, base_price, capacity, tour_type_id)
@@ -98,12 +96,12 @@ Tour(tour_id, title, destination_id, start_date, end_date, base_price, capacity,
 У результаті країна, місто і тип туру більше не дублюються в таблиці `Tour`. Вони зберігаються окремо, а в `Tour` залишаються тільки посилання на них.
 
 Було:
-```sql
+```text
 Payment(payment_id, booking_id, amount, method, payment_date)
 ```
 
 Стало:
-```sql
+```text
 PaymentMethod(method_id, method_name)
 Payment(payment_id, booking_id, amount, method_id, payment_date)
 ```
