@@ -55,15 +55,13 @@ payment_id -> booking_id, payment_date, amount, method, status
 
 Було:
 ```text
-Guide(guide_id, full_name, languages)
+Guide(guide_id, full_name, phone, languages, experience_years)
 ```
 
 Стало:
 ```text
-Guide(guide_id, full_name)
-
+Guide(guide_id, full_name, phone, experience_years)
 Language(language_id, language_name)
-
 GuideLanguage(guide_id, language_id)
 ```
 
@@ -95,13 +93,13 @@ Tour(tour_id, title, destination_id, start_date, end_date, base_price, capacity,
 
 Було:
 ```text
-Payment(payment_id, booking_id, amount, method, payment_date)
+Payment(payment_id, booking_id, payment_date, amount, method, status)
 ```
 
 Стало:
 ```text
 PaymentMethod(method_id, method_name)
-Payment(payment_id, booking_id, amount, method_id, payment_date)
+Payment(payment_id, booking_id, payment_date, amount, method_id, status)
 ```
 
 У результаті спосіб оплати більше не записується текстом у кожному платежі. Він зберігається окремо в таблиці `PaymentMethod`.
