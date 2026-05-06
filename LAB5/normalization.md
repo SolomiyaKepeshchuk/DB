@@ -23,20 +23,18 @@
 Для проблемних таблиць було визначено функціональні залежності.
 
 У таблиці `Tour` первинним ключем є `tour_id`, тому цей атрибут визначає всі інші дані про конкретний тур:
-
 ```text
 tour_id -> title, destination_country, destination_city, start_date, end_date, base_price, capacity, tour_type
 ```
 
 У таблиці `Guide` первинним ключем є `guide_id`:
-
 ```text
-guide_id -> full_name, languages
+guide_id -> full_name, phone, languages, experience_years
 ```
-У таблиці `Payment` первинним ключем є `payment_id`:
 
+У таблиці `Payment` первинним ключем є `payment_id`:
 ```text
-payment_id -> booking_id, amount, method, payment_date
+payment_id -> booking_id, payment_date, amount, method, status
 ```
 
 ## 4. Перевірка нормальних форм початкової схеми
