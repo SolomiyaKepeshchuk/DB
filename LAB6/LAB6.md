@@ -14,7 +14,7 @@
 
 ---
 
-## Виконанння завдання :
+## Виконання завдання 
 Для виконання лабораторної роботи було створено новий Maven-проєкт. У ньому було налаштовано підключення до бази даних PostgreSQL `tour_agency`, яка була створена у попередніх лабораторних роботах.
 
 Міграційні SQL-скрипти були розміщені у папці:
@@ -153,7 +153,7 @@ mvn flyway:migrate
 
 <p align="center">
   <img src="img_lab6/flyway_migrate.png" width="700"><br>
-  <i>Рисунок 4 – Успішне виконання команди mvn flyway:migrate</i>
+  <i>Рисунок 2 – Успішне виконання команди mvn flyway:migrate</i>
 </p>
 
 ## Результати запитів 
@@ -166,7 +166,7 @@ SELECT * FROM flyway_schema_history;
 ```
 <p align="center">
   <img src="img_lab6/flyway_schema_history.png" width="700"><br>
-  <i>Рисунок 5 – Перевірка виконаних міграцій у таблиці flyway_schema_history</i>
+  <i>Рисунок 3 – Перевірка виконаних міграцій у таблиці flyway_schema_history</i>
 </p>
 
 Також було перевірено, чи додався новий стовпець `notes` до таблиці `booking`. Для цього було виконано запит:
@@ -177,7 +177,7 @@ FROM booking;
 ```
 <p align="center">
   <img src="img_lab6/select_booking_notes.png" width="700"><br>
-  <i>Рисунок 6 – Перевірка доданого стовпця notes у таблиці booking</i>
+  <i>Рисунок 4 – Перевірка доданого стовпця notes у таблиці booking</i>
 </p>
 
 Перевірили чи додався стовпець `rating` до таблиці `tour`. Для цього було виконано запит:
@@ -188,7 +188,7 @@ FROM tour;
 ```
 <p align="center">
   <img src="img_lab6/select_tour_rating.png" width="700"><br>
-  <i>Рисунок 7 – Перевірка доданого стовпця rating у таблиці tour</i>
+  <i>Рисунок 5 – Перевірка доданого стовпця rating у таблиці tour</i>
 </p>
 
 Також перевірено, чи створилася нова таблиця `review`.
@@ -198,7 +198,7 @@ SELECT * FROM review;
 ```
 <p align="center">
   <img src="img_lab6/select_review.png" width="700"><br>
-  <i>Рисунок 8 – Перевірка створеної таблиці review</i>
+  <i>Рисунок 6 – Перевірка створеної таблиці review</i>
 </p>
 
 ---
