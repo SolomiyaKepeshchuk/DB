@@ -1,2 +1,0 @@
-ALTER TABLE tour
-    ADD COLUMN rating NUMERIC(2,1);
